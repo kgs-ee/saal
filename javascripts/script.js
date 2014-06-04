@@ -36,7 +36,7 @@ angular.module('saalApp', ['ngRoute'])
         if(!$rootScope.events) $rootScope.events = [];
 
         $rootScope.formatLecture = function(data) {
-            try        { var date = data.properties.time.values; }
+            try        { var date = data.properties.time.values.sort(); }
             catch(err) { var date = []; }
 
             try        { var description = data.properties.description.values[0].value; }
@@ -51,7 +51,7 @@ angular.module('saalApp', ['ngRoute'])
             return {
                 id          : data.id,
                 changed     : data.changed,
-                date        : date.sort(),
+                date        : date,
                 description : description,
                 title       : title,
             };

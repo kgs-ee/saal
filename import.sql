@@ -42,9 +42,45 @@ VALUES
 ;
 
 --
+-- News
+INSERT INTO entity (entity_definition_keyname, old_id, sharing, created, created_by)
+SELECT 'news', concat('news-',id), 'public', now(), 'import'
+ FROM saal_news;
+
+--
+-- News' properties
+DELETE FROM property WHERE property_definition_keyname = 'news-title';
+INSERT INTO `property` (`property_definition_keyname`, `entity_id`, `language`, `value_display`, `value_string`, `created`, `created_by`)
+SELECT 'news-title', (SELECT id FROM entity WHERE old_id = concat('news-',s_n.id)) entity_id
+      , 'estonian', s_n.title, s_n.title, now(), 'import'
+ FROM saal_news_et s_n
+ HAVING entity_id IS NOT NULL;
+
+INSERT INTO `property` (`property_definition_keyname`, `entity_id`, `language`, `value_display`, `value_string`, `created`, `created_by`)
+SELECT 'news-title', (SELECT id FROM entity WHERE old_id = concat('news-',s_n.id)) entity_id
+      , 'english', s_n.title, s_n.title, now(), 'import'
+ FROM saal_news_en s_n
+ HAVING entity_id IS NOT NULL;
+
+DELETE FROM property WHERE property_definition_keyname = 'news-body';
+INSERT INTO `property` (`property_definition_keyname`, `entity_id`, `language`, `value_display`, `value_text`, `created`, `created_by`)
+SELECT 'news-body', (SELECT id FROM entity WHERE old_id = concat('news-',s_n.id)) entity_id
+      , 'estonian', s_n.body, s_n.body, now(), 'import'
+ FROM saal_news_et s_n
+ HAVING entity_id IS NOT NULL AND s_n.body != '';
+
+INSERT INTO `property` (`property_definition_keyname`, `entity_id`, `language`, `value_display`, `value_text`, `created`, `created_by`)
+SELECT 'news-body', (SELECT id FROM entity WHERE old_id = concat('news-',s_n.id)) entity_id
+      , 'english', s_n.body, s_n.body, now(), 'import'
+ FROM saal_news_en s_n
+ HAVING entity_id IS NOT NULL AND s_n.body != '';
+
+
+
+--
 -- Events
 INSERT INTO entity (entity_definition_keyname, old_id, sharing, created, created_by)
-SELECT 'event', concat('event-',id), 'public' now(), 'import'
+SELECT 'event', concat('event-',id), 'public', now(), 'import'
  FROM saal_events;
 
 --
