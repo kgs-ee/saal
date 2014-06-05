@@ -75,6 +75,12 @@ SELECT 'news-body', (SELECT id FROM entity WHERE old_id = concat('news-',s_n.id)
  FROM saal_news_en s_n
  HAVING entity_id IS NOT NULL AND s_n.body != '';
 
+DELETE FROM property WHERE property_definition_keyname = 'news-time';
+INSERT INTO `property` (`property_definition_keyname`, `entity_id`, `language`, `value_datetime`, `value_display`, `created`, `created_by`)
+SELECT 'news-time', (SELECT id FROM entity WHERE old_id = concat('news-',s_e.id)) entity_id
+      , NULL, s_e.time, s_e.time, now(), 'import'
+ FROM saal_news s_e
+ HAVING entity_id IS NOT NULL AND s_e.time != '0000-00-00 00:00:00';
 
 
 --

@@ -1,0 +1,12 @@
+<h3>{{ news.title }}</h3>
+
+<!-- <pre>{{ news | json }} </pre> -->
+
+
+<p ng-if="news.time">
+    {{ news.time | date: 'dd.MM.yyyy HH:mm:ss' }}
+</p>
+
+<p ng-if="news.body">
+    {{ news.body }}
+</p>

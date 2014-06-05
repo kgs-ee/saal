@@ -1,0 +1,5 @@
+<h3 ng-if="!eventlist">Laen andmeid...</h3>
+
+    <a ng-repeat="e in eventlist | orderBy:'id':true | filter:search" href="#/event/{{ e.id }}">
+        <li>/{{ e.id }}/{{ e.price }} - {{ e.title }}</li>
+    </a>

@@ -1,9 +1,0 @@
-<h3 ng-if="!events">Laen andmeid...</h3>
-
-<!-- <div ng-repeat="g in years"> -->
-    <!-- <h3 ng-repeat-start="e in events | filter:search | orderBy:'date':true" ng-if="$first">{{ g }}</h3> -->
-    <a ng-repeat="e in events | orderBy:'id':true | filter:search" href="#/{{ e.id }}">
-        <li>/{{ e.id }}/{{ e.price }} - {{ e.title }}</li>
-        <!-- <span ng-if="l.author">- <span ng-repeat="a in l.author">{{ a }}{{ $last ? '' : ', ' }}</span></span><br> -->
-    </a>
-<!-- </div> -->

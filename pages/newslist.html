@@ -1,0 +1,9 @@
+<h3 ng-if="!newslist">Laen andmeid...</h3>
+<!-- <pre>{{ newslist | json }} </pre> -->
+    <a ng-repeat="e in newslist | orderBy:'time':true | filter:search" href="#/news/{{ e.id }}">
+        <p>
+            <h3>/{{ e.id }}/ {{ e.title }}</h3>
+            <span ng-if="e.time">{{ e.time | date: 'dd.MM.yyyy HH:mm:ss' }}</span>
+            <p>{{ e.body|truncate:250 }}</p>
+        </p>
+    </a>
