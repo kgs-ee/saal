@@ -1,44 +1,15 @@
 <h3>{{ event.title }}</h3>
+<!-- <pre>{{ event | json }} </pre> -->
 
 <p ng-if="event.date">
     <p ng-repeat="d in event.date">{{ d.value | date: 'dd.MM.yyyy hh:mm' }}</p>
 </p>
 
+<p ng-if="event.price">
+    {{ event.price }}
+</p>
+
 <p ng-if="event.description">
     {{ event.description }}
 </p>
-
-<p ng-if="event.subject">
-    <span ng-if="event.subject.length <= 1">Teema:</span>
-    <span ng-if="event.subject.length  > 1">Teemad:</span>
-    <span ng-repeat="u in event.subject">{{ u }}{{ $last ? '' : ', ' }}</span>
-</p>
-
-<p ng-if="event.author">
-    <span ng-if="event.author.length <= 1">Ettekandja:</span>
-    <span ng-if="event.author.length  > 1">Ettekandjad:</span>
-    <span ng-repeat="a in event.author">{{ a }}{{ $last ? '' : ', ' }}</span>
-</p>
-
-<p ng-if="event.editor">
-    <span ng-if="event.editor.length <= 1">Toimetaja:</span>
-    <span ng-if="event.editor.length  > 1">Toimetajad:</span>
-    <span ng-repeat="e in event.editor">{{ e }}{{ $last ? '' : ', ' }}</span>
-</p>
-
-<p ng-if="event.music">
-    <span>Muusika:</span>
-    <span ng-repeat="m in event.music">{{ m }}{{ $last ? '' : ', ' }}</span>
-</p>
-
-<p ng-if="event.sound">
-    <span>Heli:</span>
-    <span ng-repeat="s in event.sound">{{ s }}{{ $last ? '' : ', ' }}</span>
-</p>
-
-<p ng-if="event.other">
-    <span>Teised:</span>
-    <span ng-repeat="o in event.other">{{ o }}{{ $last ? '' : ', ' }}</span>
-</p>
-
 

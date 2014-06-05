@@ -82,6 +82,7 @@ angular.module('saalApp', ['ngRoute'])
                 id          : data.id,
                 changed     : data.changed,
                 date        : date,
+                price       : price,
                 description : description,
                 title       : title,
             };
@@ -142,9 +143,9 @@ angular.module('saalApp', ['ngRoute'])
                 $rootScope.eventlist_count  = data.result.length;
                 $rootScope.eventlist_loaded = 0;
                 $rootScope.eventlist        = [];
-                $rootScope.years           = [];
-                $rootScope.authors         = [];
-                $rootScope.subjects        = [];
+                $rootScope.years            = [];
+                $rootScope.authors          = [];
+                $rootScope.subjects         = [];
 
                 for(i in data.result) {
                     $rootScope.getEvent(data.result[i].id, data.result[i].changed.dt);
@@ -157,8 +158,8 @@ angular.module('saalApp', ['ngRoute'])
         if(!$rootScope.newslist) $rootScope.newslist = [];
 
         $rootScope.formatNews = function(data) {
-            try        { var time = new Date(data.properties.time.values[0].db_value); }
-            catch(err) { var time = []; }
+            try        { var time = data.properties.time.values[0].value; }
+            catch(err) { var time = ''; }
 
             try        { var body = data.properties.body.values[0].value; }
             catch(err) { var body = ''; }
