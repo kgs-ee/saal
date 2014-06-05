@@ -32,8 +32,8 @@
     </head>
     <body ng-controller="mainCtrl" ng-class="{ 'night' : nightMode }">
 
-        <div class="progress" ng-if="events_loaded != events_count">
-            <div class="progress-bar" role="progressbar" ng-style="{width: (events_loaded * 100 / events_count)+'%'}"></div>
+        <div class="progress" ng-if="newslist_loaded+eventlist_loaded != newslist_count+eventlist_count">
+            <div class="progress-bar" role="progressbar" ng-style="{width: ((newslist_loaded+eventlist_loaded) * 100 / (newslist_count+eventlist_count))+'%'}"></div>
         </div>
 
         <content ng-style="{'margin-top': !current_event && '40px'}">
