@@ -67,92 +67,6 @@ angular.module('saalApp', ['ngRoute'])
         }
     }])
 
-    .service('eventModel', ['$rootScope', '$http', '$window', function($rootScope, $http, $window) {
-        if(!$rootScope.eventlist) $rootScope.eventlist = [];
-
-        $rootScope.formatEvent = function(data) {
-            try        { var date = data.properties.time.values.sort() }
-            catch(err) { var date = [] }
-
-            try        { var description = data.properties.description.values[0].value }
-            catch(err) { var description = '' }
-
-            try        { var price = data.properties.price.values[0].value }
-            catch(err) { var price = '' }
-
-            try        { var title = data.properties.name.values[0].value }
-            catch(err) { var title = '' }
-
-            return {
-                id          : data.id,
-                changed     : data.changed,
-                date        : date,
-                price       : price,
-                description : description,
-                title       : title,
-            };
-        };
-
-        $rootScope.pushEventToScope = function(event, only_event, is_coming) {
-            if(only_event) {
-                $rootScope.event = event
-            } else {
-                $rootScope.event = null
-
-                $rootScope.eventlist_loaded += 1
-
-                if(is_coming === true) {
-                    $rootScope.cominglist.push(event)
-                } else {
-                    $rootScope.eventlist.push(event)
-                }
-            }
-        }
-
-        $rootScope.getEvent = function(id, changed, only_event, is_coming) {
-                    cl(is_coming)
-            try        { var event = JSON.parse($window.localStorage.getItem('event-'+id)) }
-            catch(err) { var event = {changed:''} }
-
-            if(!event) var event = {changed:''};
-            if(event.changed == changed) {
-                $rootScope.pushEventToScope(event, only_event, is_coming);
-                return event;
-            } else {
-                cl('Get event #'+id+' from Entu');
-                $http({method: 'GET', url: entuURL+'entity-'+id}).success(function(data) {
-                    event = $rootScope.formatEvent(data.result);
-                    $window.localStorage.setItem('event-'+id, JSON.stringify(event));
-                    $rootScope.pushEventToScope(event, only_event, is_coming);
-                    return event;
-                });
-            }
-        };
-
-        $rootScope.getEventList = function() {
-            $http({method: 'GET', url: entuURL+'entity-597/childs', params: {definition: 'event'}}).success(function(data) {
-                $rootScope.eventlist_count  = data.result.length
-                $rootScope.eventlist_loaded = 0
-                $rootScope.eventlist        = []
-                $rootScope.cominglist       = []
-                // cl(data.result.event.entities)
-                for(i in data.result.event.entities) {
-                    // cl('Try event #'+data.result.event.entities[i].id+' from Entu')
-                    $rootScope.getEvent(data.result.event.entities[i].id, new Date().toJSON().slice(0,10), false, true)
-                }
-                cl('$rootScope.cominglist')
-                cl($rootScope.cominglist)
-            })
-            $http({method: 'GET', url: entuURL+'entity', params: {definition: 'event'}}).success(function(data) {
-                $rootScope.eventlist_count  += data.result.length
-
-                for(i in data.result) {
-                    $rootScope.getEvent(data.result[i].id, data.result[i].changed.dt, false, false)
-                }
-            })
-        }
-    }])
-
     .service('newsModel', ['$rootScope', '$http', '$window', function($rootScope, $http, $window) {
         if(!$rootScope.newslist) $rootScope.newslist = [];
 
@@ -180,29 +94,8 @@ angular.module('saalApp', ['ngRoute'])
                 $rootScope.news = news;
             } else {
                 $rootScope.news = null;
-
                 $rootScope.newslist.push(news);
                 $rootScope.newslist_loaded += 1;
-
-                if($rootScope.years.indexOf(news.year) == -1) {
-                    $rootScope.years.push(news.year);
-                    $rootScope.years = $rootScope.years.sort();
-                    $rootScope.years = $rootScope.years.reverse();
-                }
-
-                for(a in news.author) {
-                    if($rootScope.authors.indexOf(news.author[a]) == -1) {
-                        $rootScope.authors.push(news.author[a]);
-                        $rootScope.authors = $rootScope.authors.sort();
-                    }
-                }
-
-                for(s in news.subject) {
-                    if($rootScope.subjects.indexOf(news.subject[s]) == -1) {
-                        $rootScope.subjects.push(news.subject[s]);
-                        $rootScope.subjects = $rootScope.subjects.sort();
-                    }
-                }
             }
         };
 
@@ -226,19 +119,103 @@ angular.module('saalApp', ['ngRoute'])
         };
 
         $rootScope.getNewsList = function() {
-            $http({method: 'GET', url: entuURL+'entity', params: {definition: 'news'}}).success(function(data) {
-                $rootScope.newslist_count   = data.result.length;
+            $http({method: 'GET', url: entuURL+'entity-597/childs', params: {definition: 'news'}}).success(function(data) {
+                // cl(data.result)
+                $rootScope.newslist_count   = data.result.news.entities.length;
                 $rootScope.newslist_loaded  = 0;
                 $rootScope.newslist         = [];
-                $rootScope.years            = [];
-                $rootScope.authors          = [];
-                $rootScope.subjects         = [];
 
-                for(i in data.result) {
-                    $rootScope.getNews(data.result[i].id, data.result[i].changed.dt);
+                for(i in data.result.news.entities) {
+                    $rootScope.getNews(data.result.news.entities[i].id, new Date().toJSON().slice(0,10));
                 };
             });
         };
+    }])
+
+    .service('eventModel', ['$rootScope', '$http', '$window', function($rootScope, $http, $window) {
+        if(!$rootScope.eventlist) $rootScope.eventlist = []
+
+        $rootScope.formatEvent = function(data) {
+            try        { var date = data.properties.time.values.sort() }
+            catch(err) { var date = [] }
+
+            try        { var description = data.properties.description.values[0].value }
+            catch(err) { var description = '' }
+
+            try        { var price = data.properties.price.values[0].value }
+            catch(err) { var price = '' }
+
+            try        { var title = data.properties.name.values[0].value }
+            catch(err) { var title = '' }
+
+            return {
+                id          : data.id,
+                changed     : data.changed,
+                date        : date,
+                price       : price,
+                description : description,
+                title       : title,
+            }
+        }
+
+        $rootScope.pushEventToScope = function(event, only_event, is_coming) {
+            if(only_event) {
+                $rootScope.event = event
+            } else {
+                $rootScope.event = null
+
+                $rootScope.eventlist_loaded += 1
+
+                if(is_coming === true) {
+                    $rootScope.cominglist.push(event)
+                } else {
+                    $rootScope.eventlist.push(event)
+                }
+            }
+        }
+
+        $rootScope.getEvent = function(id, changed, only_event, is_coming) {
+            // cl(is_coming)
+            try        { var event = JSON.parse($window.localStorage.getItem('event-'+id)) }
+            catch(err) { var event = {changed:''} }
+
+            if(!event) var event = {changed:''};
+            if(event.changed == changed) {
+                $rootScope.pushEventToScope(event, only_event, is_coming);
+                return event;
+            } else {
+                cl('Get event #'+id+' from Entu');
+                $http({method: 'GET', url: entuURL+'entity-'+id}).success(function(data) {
+                    event = $rootScope.formatEvent(data.result);
+                    $window.localStorage.setItem('event-'+id, JSON.stringify(event));
+                    $rootScope.pushEventToScope(event, only_event, is_coming);
+                    return event;
+                });
+            }
+        };
+
+        $rootScope.getEventList = function() {
+            $http({method: 'GET', url: entuURL+'entity-597/childs', params: {definition: 'event'}}).success(function(data) {
+                $rootScope.eventlist_count  = data.result.event.entities.length
+                $rootScope.eventlist_loaded = 0
+                $rootScope.eventlist        = []
+                $rootScope.cominglist       = []
+                // cl(data.result.event.entities)
+                for(i in data.result.event.entities) {
+                    // cl('Try event #'+data.result.event.entities[i].id+' from Entu')
+                    $rootScope.getEvent(data.result.event.entities[i].id, new Date().toJSON().slice(0,10), false, true)
+                }
+                cl('$rootScope.cominglist')
+                cl($rootScope.cominglist)
+            })
+            $http({method: 'GET', url: entuURL+'entity', params: {definition: 'event'}}).success(function(data) {
+                $rootScope.eventlist_count  += data.result.length
+
+                for(i in data.result) {
+                    $rootScope.getEvent(data.result[i].id, data.result[i].changed.dt, false, false)
+                }
+            })
+        }
     }])
 
     .controller('eventListCtrl', ['$rootScope', '$scope', '$http', '$location', 'eventModel', function($rootScope, $scope, $http, $location, eventModel) {
