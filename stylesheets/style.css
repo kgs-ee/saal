@@ -4,7 +4,7 @@ body{font-family:'Open Sans',sans-serif;font-weight:300}
 
 .progress .progress-bar{background:#5ba0d0}
 
-content{margin:120px auto 20px auto;padding:0 20px;max-width:550px;display:block}
+content{margin:120px auto 20px auto;padding:0 20px;max-width:750px;display:block}
 
 content a,content a:hover,content a:active{color:#5ba0d0!important;outline:none!important}
 
@@ -42,4 +42,7 @@ view .play-button{margin:0;width:100%;color:#5ba0d0;cursor:pointer;text-align:ce
 
 .night,.night input{background:#171717;color:#fff}
 
-.id{float: right}
+.id{float: right; display: none}
+.price{width: 100%; text-align: right; padding: 0; margin: 0}
+.date{float: left; width: 70pt}
+.title{clear: none;}

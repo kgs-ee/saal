@@ -3,9 +3,9 @@
     <a ng-repeat="e in cominglist | orderBy:'id':true | filter:search" href="#/event/{{ e.id }}">
         <p>
             <span class="id">{{ e.id }}</span>
+            <p class="date"><span ng-if="e.date" ng-repeat="d in e.date">{{ d.value | date: 'dd.MM.yyyy hh:mm' }} <br/></span></p>
             <h3 class="title">{{ e.title }}</h3>
-            <span class="date" ng-if="e.date" ng-repeat="d in e.date">{{ d.value | date: 'dd.MM.yyyy hh:mm' }} </span>
-            <span class="price" ng-if="e.price"><br/>Hind: {{ e.price }}</span>
+            <p class="price" ng-if="e.price">Hind: {{ e.price }}</p>
             <p class="description">{{ e.description|truncate:250 }}</p>
         </p>
     </a>

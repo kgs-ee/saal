@@ -205,8 +205,8 @@ angular.module('saalApp', ['ngRoute'])
                     // cl('Try event #'+data.result.event.entities[i].id+' from Entu')
                     $rootScope.getEvent(data.result.event.entities[i].id, new Date().toJSON().slice(0,10), false, true)
                 }
-                cl('$rootScope.cominglist')
-                cl($rootScope.cominglist)
+                // cl('$rootScope.cominglist')
+                // cl($rootScope.cominglist)
             })
             $http({method: 'GET', url: entuURL+'entity', params: {definition: 'event'}}).success(function(data) {
                 $rootScope.eventlist_count  += data.result.length
