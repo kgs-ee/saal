@@ -49,7 +49,7 @@ angular.module('saalApp', ['ngRoute'])
                 templateUrl : 'pages/news.html',
                 controller  : 'newsCtrl'
             })
-            .otherwise({ redirectTo: '/eventlist' });
+            .otherwise({ redirectTo: '/cominglist' });
     }])
 
     .controller('mainCtrl', ['$rootScope', '$scope', '$location', function($rootScope, $scope, $location) {
