@@ -33,6 +33,10 @@ angular.module('saalApp', ['ngRoute'])
                 templateUrl : 'pages/eventlist.html',
                 controller  : 'eventListCtrl'
             })
+            .when('/cominglist', {
+                templateUrl : 'pages/cominglist.html',
+                controller  : 'eventListCtrl'
+            })
             .when('/event/:id', {
                 templateUrl : 'pages/event.html',
                 controller  : 'eventCtrl'
@@ -52,8 +56,9 @@ angular.module('saalApp', ['ngRoute'])
         $rootScope.url = $location.path().replace('/', '');
         $scope.nightTipNr = Math.floor((Math.random()*3)+1);
         $scope.pages = [
-            {url: 'eventlist',   title: 'Sündmused'},
+            {url: 'cominglist',   title: 'Kava'},
             {url: 'newslist',     title: 'Uudised'},
+            {url: 'eventlist',   title: 'Arhiiv'},
         ];
 
         $scope.nightToggle = function () {
@@ -88,70 +93,64 @@ angular.module('saalApp', ['ngRoute'])
             };
         };
 
-        $rootScope.pushEventToScope = function(event, only_event) {
+        $rootScope.pushEventToScope = function(event, only_event, is_coming) {
             if(only_event) {
-                $rootScope.event = event;
+                $rootScope.event = event
             } else {
-                $rootScope.event = null;
+                $rootScope.event = null
 
-                $rootScope.eventlist.push(event);
-                $rootScope.eventlist_loaded += 1;
+                $rootScope.eventlist_loaded += 1
 
-                if($rootScope.years.indexOf(event.year) == -1) {
-                    $rootScope.years.push(event.year);
-                    $rootScope.years = $rootScope.years.sort();
-                    $rootScope.years = $rootScope.years.reverse();
-                }
-
-                for(a in event.author) {
-                    if($rootScope.authors.indexOf(event.author[a]) == -1) {
-                        $rootScope.authors.push(event.author[a]);
-                        $rootScope.authors = $rootScope.authors.sort();
-                    }
-                }
-
-                for(s in event.subject) {
-                    if($rootScope.subjects.indexOf(event.subject[s]) == -1) {
-                        $rootScope.subjects.push(event.subject[s]);
-                        $rootScope.subjects = $rootScope.subjects.sort();
-                    }
+                if(is_coming === true) {
+                    $rootScope.cominglist.push(event)
+                } else {
+                    $rootScope.eventlist.push(event)
                 }
             }
-        };
+        }
 
-        $rootScope.getEvent = function(id, changed, only_event) {
+        $rootScope.getEvent = function(id, changed, only_event, is_coming) {
+                    cl(is_coming)
             try        { var event = JSON.parse($window.localStorage.getItem('event-'+id)) }
             catch(err) { var event = {changed:''} }
 
             if(!event) var event = {changed:''};
             if(event.changed == changed) {
-                $rootScope.pushEventToScope(event, only_event);
+                $rootScope.pushEventToScope(event, only_event, is_coming);
                 return event;
             } else {
                 cl('Get event #'+id+' from Entu');
                 $http({method: 'GET', url: entuURL+'entity-'+id}).success(function(data) {
                     event = $rootScope.formatEvent(data.result);
                     $window.localStorage.setItem('event-'+id, JSON.stringify(event));
-                    $rootScope.pushEventToScope(event, only_event);
+                    $rootScope.pushEventToScope(event, only_event, is_coming);
                     return event;
                 });
             }
         };
 
         $rootScope.getEventList = function() {
+            $http({method: 'GET', url: entuURL+'entity-597/childs', params: {definition: 'event'}}).success(function(data) {
+                $rootScope.eventlist_count  = data.result.length
+                $rootScope.eventlist_loaded = 0
+                $rootScope.eventlist        = []
+                $rootScope.cominglist       = []
+                // cl(data.result.event.entities)
+                for(i in data.result.event.entities) {
+                    // cl('Try event #'+data.result.event.entities[i].id+' from Entu')
+                    $rootScope.getEvent(data.result.event.entities[i].id, new Date().toJSON().slice(0,10), false, true)
+                }
+                cl('$rootScope.cominglist')
+                cl($rootScope.cominglist)
+            })
             $http({method: 'GET', url: entuURL+'entity', params: {definition: 'event'}}).success(function(data) {
-                $rootScope.eventlist_count  = data.result.length;
-                $rootScope.eventlist_loaded = 0;
-                $rootScope.eventlist        = [];
-                $rootScope.years            = [];
-                $rootScope.authors          = [];
-                $rootScope.subjects         = [];
+                $rootScope.eventlist_count  += data.result.length
 
                 for(i in data.result) {
-                    $rootScope.getEvent(data.result[i].id, data.result[i].changed.dt);
-                };
-            });
-        };
+                    $rootScope.getEvent(data.result[i].id, data.result[i].changed.dt, false, false)
+                }
+            })
+        }
     }])
 
     .service('newsModel', ['$rootScope', '$http', '$window', function($rootScope, $http, $window) {

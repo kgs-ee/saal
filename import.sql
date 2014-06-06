@@ -48,6 +48,14 @@ SELECT 'news', concat('news-',id), 'public', now(), 'import'
  FROM saal_news;
 
 --
+-- Events
+INSERT INTO entity (entity_definition_keyname, old_id, sharing, created, created_by)
+SELECT 'event', concat('event-',id), 'public', now(), 'import'
+ FROM saal_events;
+
+
+
+--
 -- News' properties
 DELETE FROM property WHERE property_definition_keyname = 'news-title';
 INSERT INTO `property` (`property_definition_keyname`, `entity_id`, `language`, `value_display`, `value_string`, `created`, `created_by`)
@@ -83,11 +91,6 @@ SELECT 'news-time', (SELECT id FROM entity WHERE old_id = concat('news-',s_e.id)
  HAVING entity_id IS NOT NULL AND s_e.time != '0000-00-00 00:00:00';
 
 
---
--- Events
-INSERT INTO entity (entity_definition_keyname, old_id, sharing, created, created_by)
-SELECT 'event', concat('event-',id), 'public', now(), 'import'
- FROM saal_events;
 
 --
 -- Event properties
@@ -175,6 +178,11 @@ SELECT 'event-time', (SELECT id FROM entity WHERE old_id = concat('event-',s_e.i
       , NULL, s_e.time0, s_e.time0, now(), 'import'
  FROM saal_events s_e
  HAVING entity_id IS NOT NULL AND s_e.time0 != '0000-00-00 00:00:00';
+
+UPDATE property SET value_display = LEFT(value_display, 10) WHERE RIGHT (value_display, 8) = '00:00:00';
+UPDATE property SET value_display = LEFT(value_display, 16) WHERE RIGHT (value_display, 3) = ':00';
+
+
 
 
     INSERT IGNORE INTO relationship (entity_id, related_entity_id, `relationship_definition_keyname`)
