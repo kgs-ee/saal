@@ -66,17 +66,17 @@ angular.module('saalApp', ['ngRoute'])
         if(!$rootScope.eventlist) $rootScope.eventlist = [];
 
         $rootScope.formatEvent = function(data) {
-            try        { var date = data.properties.time.values.sort(); }
-            catch(err) { var date = []; }
+            try        { var date = data.properties.time.values.sort() }
+            catch(err) { var date = [] }
 
-            try        { var description = data.properties.description.values[0].value; }
-            catch(err) { var description = ''; }
+            try        { var description = data.properties.description.values[0].value }
+            catch(err) { var description = '' }
 
-            try        { var price = data.properties.price.values[0].value; }
-            catch(err) { var price = ''; }
+            try        { var price = data.properties.price.values[0].value }
+            catch(err) { var price = '' }
 
-            try        { var title = data.properties.name.values[0].value; }
-            catch(err) { var title = ''; }
+            try        { var title = data.properties.name.values[0].value }
+            catch(err) { var title = '' }
 
             return {
                 id          : data.id,
@@ -120,8 +120,8 @@ angular.module('saalApp', ['ngRoute'])
         };
 
         $rootScope.getEvent = function(id, changed, only_event) {
-            try        { var event = JSON.parse($window.localStorage.getItem('event-'+id)); }
-            catch(err) { var event = {changed:''}; }
+            try        { var event = JSON.parse($window.localStorage.getItem('event-'+id)) }
+            catch(err) { var event = {changed:''} }
 
             if(!event) var event = {changed:''};
             if(event.changed == changed) {
@@ -158,14 +158,14 @@ angular.module('saalApp', ['ngRoute'])
         if(!$rootScope.newslist) $rootScope.newslist = [];
 
         $rootScope.formatNews = function(data) {
-            try        { var time = data.properties.time.values[0].value; }
-            catch(err) { var time = ''; }
+            try        { var time = data.properties.time.values[0].value }
+            catch(err) { var time = '' }
 
-            try        { var body = data.properties.body.values[0].value; }
-            catch(err) { var body = ''; }
+            try        { var body = data.properties.body.values[0].value }
+            catch(err) { var body = '' }
 
-            try        { var title = data.properties.title.values[0].value; }
-            catch(err) { var title = ''; }
+            try        { var title = data.properties.title.values[0].value }
+            catch(err) { var title = '' }
 
             return {
                 id          : data.id,
@@ -208,8 +208,8 @@ angular.module('saalApp', ['ngRoute'])
         };
 
         $rootScope.getNews = function(id, changed, only_news) {
-            try        { var news = JSON.parse($window.localStorage.getItem('news-'+id)); }
-            catch(err) { var news = {changed:''}; }
+            try        { var news = JSON.parse($window.localStorage.getItem('news-'+id)) }
+            catch(err) { var news = {changed:''} }
 
             if(!news) var news = {changed:''};
             if(news.changed == changed) {
