@@ -42,6 +42,7 @@
 
                 <h1><i id="night-switch" class="fa" ng-click="nightToggle()" ng-class="{'fa-sun-o' : nightMode, 'fa-moon-o': !nightMode}"></i> <a id="logo" href="#">saal.ee</a></h1>
 
+                <p>{{ current_date }} XX {{ current_time }}</p>
                 <form>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-search"></i></span>
@@ -51,7 +52,6 @@
 
                 <ul class="nav nav-tabs nav-justified">
                     <li ng-class="{ 'active' : p.url == url }" ng-repeat="p in pages"><a href="#{{ p.url }}">{{ p.title }}</a></li>
-                    <li ng-class="{ 'active' : current_event.id == url }" ng-show="current_event"><a href="#{{ current_event.id }}"><i class="fa fa-play pull-center"></i></a></li>
                 </ul>
 
             </header>

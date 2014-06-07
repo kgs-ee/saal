@@ -53,8 +53,11 @@ angular.module('saalApp', ['ngRoute'])
     }])
 
     .controller('mainCtrl', ['$rootScope', '$scope', '$location', function($rootScope, $scope, $location) {
-        $rootScope.url = $location.path().replace('/', '');
-        $scope.nightTipNr = Math.floor((Math.random()*3)+1);
+        $rootScope.url = $location.path().replace('/', '')
+        $scope.nightTipNr = Math.floor((Math.random()*3)+1)
+        $scope.current_date = new Date().toJSON().slice(0,10)
+        $scope.current_time = new Date().toJSON().slice(11,19)
+        // $scope.current.time = .toJSON().slice(0,10)
         $scope.pages = [
             {url: 'cominglist',   title: 'Kava'},
             {url: 'newslist',     title: 'Uudised'},
@@ -71,7 +74,7 @@ angular.module('saalApp', ['ngRoute'])
         if(!$rootScope.newslist) $rootScope.newslist = [];
 
         $rootScope.formatNews = function(data) {
-            try        { var time = data.properties.time.values[0].value }
+            try        { var time = data.properties.time.values[0].value.toJSON().slice(0,10) }
             catch(err) { var time = '' }
 
             try        { var body = data.properties.body.values[0].value }
@@ -136,8 +139,16 @@ angular.module('saalApp', ['ngRoute'])
         if(!$rootScope.eventlist) $rootScope.eventlist = []
 
         $rootScope.formatEvent = function(data) {
-            try        { var date = data.properties.time.values.sort() }
+            cl(data.properties.time)
+            try {
+                var date = []
+                var dates = data.properties.time.values
+                for (var i = dates.length - 1; i >= 0; i--) {
+                    date.push(dates[i].value)
+                }
+            }
             catch(err) { var date = [] }
+            cl(date)
 
             try        { var description = data.properties.description.values[0].value }
             catch(err) { var description = '' }

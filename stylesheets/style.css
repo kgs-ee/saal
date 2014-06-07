@@ -42,7 +42,10 @@ view .play-button{margin:0;width:100%;color:#5ba0d0;cursor:pointer;text-align:ce
 
 .night,.night input{background:#171717;color:#fff}
 
+.eventlist{border: solid 0px #171717; border-radius:10; padding: 0px; margin: 0px; list-style-type:none}
+.eventlistitem{border-bottom: solid 0px #5ba0d0; border-radius:10; padding: 0px; margin: 0px; clear: both;}
 .id{float: right; display: none}
-.price{width: 100%; text-align: right; padding: 0; margin: 0}
-.date{float: left; width: 70pt}
-.title{clear: none;}
+.dateandprice{float: left; border: solid 0px #990000;}
+.date{padding: 0px; margin: 0px; list-style-type:none}
+.price{text-align: left}
+.title{text-align: right; vertical-align: top; border-top: solid 1px #666666;}
