@@ -1,5 +1,21 @@
 <h3 ng-if="!eventlist">Laen andmeid...</h3>
 
+<ul class="eventlist">
+    <li class="eventlistitem" ng-repeat="e in eventlist | orderBy:'id':true | filter:search">
+        <a href="#/event/{{ e.id }}">
+            <div class="id">{{ e.id }}</div>
+            <div class="dateandprice">
+                <ul class="date" ng-if="e.date">
+                    <li ng-repeat="d in e.date">{{ d }}</li>
+                </ul>
+                <div class="price" ng-if="e.price">Hind: {{ e.price }}</div>
+            </div>
+            <div class="title">{{ e.title }}</div>
+            <!-- <div class="description">{{ e.description|truncate:250 }}</div> -->
+        </a>
+    </li>
+</ul>
+<!--
     <a ng-repeat="e in eventlist | orderBy:'id':true | filter:search" href="#/event/{{ e.id }}">
         <p>
             <span class="id">{{ e.id }}</span>
@@ -10,3 +26,4 @@
         </p>
     </a>
 
+ -->
