@@ -85,6 +85,42 @@ Back-end: Mihkel Putrints
 /**	MAIN NAVIGATION
 ***	- - - - - - - - - - - - - - - - - - - - */
 
+nav[role="main"] {
+	@extend .navbar;
+	@extend .navbar-default; 
+	@extend .navbar-static-top;
+}
+
+#navbar {
+	@extend .navbar-collapse; 
+	@extend .collapse;
+
+	.header-nav-1 {
+		@extend .list-unstyled; 
+		@extend .col-md-1;
+	}
+
+	.header-nav-2 {
+		@extend .list-unstyled; 
+		@extend .col-md-2;
+	}
+
+	.header-lang {
+		@extend .list-unstyled;
+		@extend .col-md-2;
+		@extend .col-md-offset-3;
+		@extend .col-xs-6;
+	}
+
+	.header-social {
+		@extend .col-md-2;
+		@extend .col-xs-6;
+		@extend .list-inline;
+		@extend .text-right;
+		@extend .h4;
+	}
+}
+
 @media (min-width: $screen-tablet) {
 
 	.navbar {
@@ -95,28 +131,6 @@ Back-end: Mihkel Putrints
 		padding-bottom: 2em;
 	}
 	
-	.navbar-nav.main-nav {
-		li {
-			position: static;
-      		float: none;
-      		width: auto;
-
-      		&.active {
-
-      			 a {
-      			 	background-color: transparent;
-      			 	border-bottom: 1px solid;
-      			}
-
-      		}
-
-      		a {
-      			color: $gray-dark;
-      			padding: 0;
-      			text-transform: uppercase;
-      		}
-		}
-	}
 }
 
 /**	- - - - - - - - - - - - - - - - - - - - */
