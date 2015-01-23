@@ -1,0 +1,270 @@
+/*! 
+- - - - - - - - - - - - - - - - - - - - - - - 
+KANUTI GILDI SAAL
+
+Front-end: Ranno Ait
+Back-end: Mihkel Putrints
+- - - - - - - - - - - - - - - - - - - - - - -
+*/
+
+/**	- - - - - - - - - - - - - - - - - - - - */
+
+@import "bootstrap";
+
+/**	- - - - - - - - - - - - - - - - - - - - */
+
+
+/**	FONTS
+***	- - - - - - - - - - - - - - - - - - - - */
+
+@font-face {
+    font-family: 'flyerblack';
+    src: url('../fonts/flyer/flyer-black-webfont.eot');
+    src: url('../fonts/flyer/flyer-black-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/flyer/flyer-black-webfont.woff2') format('woff2'),
+         url('../fonts/flyer/flyer-black-webfont.woff') format('woff'),
+         url('../fonts/flyer/flyer-black-webfont.ttf') format('truetype'),
+         url('../fonts/flyer/flyer-black-webfont.svg#flyerblack') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+	font-family: 'icomoon';
+	src:url('../fonts/icomoon/icomoon.eot?nrtu1k');
+	src:url('../fonts/icomoon/icomoon.eot?#iefixnrtu1k') format('embedded-opentype'),
+		url('../fonts/icomoon/icomoon.woff?nrtu1k') format('woff'),
+		url('../fonts/icomoon/icomoon.ttf?nrtu1k') format('truetype'),
+		url('../fonts/icomoon/icomoon.svg?nrtu1k#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-mail4:before {
+	content: "\ea86";
+}
+
+.icon-facebook3:before {
+	content: "\ea8e";
+}
+
+.icon-instagram:before {
+	content: "\ea90";
+}
+
+.icon-twitter3:before {
+	content: "\ea93";
+}
+
+.icon-youtube:before {
+	content: "\ea97";
+}
+
+.icon-vimeo3:before {
+	content: "\ea9e";
+}
+
+/**	- - - - - - - - - - - - - - - - - - - - */
+
+
+/**	MAIN NAVIGATION
+***	- - - - - - - - - - - - - - - - - - - - */
+
+@media (min-width: $screen-tablet) {
+
+	.navbar {
+		background-color: white;
+		border-color: none;
+		border: 0;
+		padding-top: 2em;
+		padding-bottom: 2em;
+	}
+	
+	.navbar-nav.main-nav {
+		li {
+			position: static;
+      		float: none;
+      		width: auto;
+
+      		&.active {
+
+      			 a {
+      			 	background-color: transparent;
+      			 	border-bottom: 1px solid;
+      			}
+
+      		}
+
+      		a {
+      			color: $gray-dark;
+      			padding: 0;
+      			text-transform: uppercase;
+      		}
+		}
+	}
+}
+
+/**	- - - - - - - - - - - - - - - - - - - - */
+
+
+/**	DATEPICKER
+***	- - - - - - - - - - - - - - - - - - - - */
+
+.ui-datepicker-header {
+	//@extend .row;
+}
+
+.ui-datepicker-prev {
+	//@extend .col-md-4;
+}
+
+.ui-datepicker-next {
+	//@extend .col-md-4;
+	//@extend .col-md-push-4;
+	@extend .pull-right;
+	@extend .text-right;
+}
+
+
+.ui-datepicker-title {
+	@extend .h2;
+	@extend .text-center;
+	margin-top: - ceil(($font-size-base * 1.4));
+	//@extend .col-md-4;
+	//@extend .col-md-pull-5;
+}
+
+.ui-datepicker-calendar {
+	@extend .table;
+	//@extend .table-bordered;
+	@extend .text-center;
+}
+
+.badge {
+	margin-top: -20px;
+	background-color: red;
+}
+
+td[title="Available"] {
+
+	a {
+		@extend .badge;
+	}
+
+}
+/**	- - - - - - - - - - - - - - - - - - - - */
+
+
+/**	LINKS
+***	- - - - - - - - - - - - - - - - - - - - */
+
+/**	- - - - - - - - - - - - - - - - - - - - */
+
+
+/**	TYPOGRAPHY
+***	- - - - - - - - - - - - - - - - - - - - */
+
+h1,
+h3,
+h4 {
+	font-family: flyerblack, Arial, Helvetica, sans-serif;
+}
+
+/**	- - - - - - - - - - - - - - - - - - - - */
+
+/**	FRONT PROGRAMME
+***	- - - - - - - - - - - - - - - - - - - - */
+
+.event-list,
+.tour-list {
+	@extend .row;
+	margin-top: 3em;
+
+	h1 {
+		@extend .col-md-12;
+		@extend .text-center;
+	}
+
+	.single-event {
+		@extend .col-md-12;
+		border-bottom: 3px solid $gray-dark;
+		padding-top: 1.3em;
+		padding-bottom: 1.3em;
+
+		&:last-child {
+			border-bottom: 0;
+		}
+
+		.date {
+			@extend .col-xs-2;
+			@extend .col-md-1;
+		}
+
+		.title {
+			@extend .col-xs-10;
+			@extend .col-md-6;
+		}
+
+		.location {
+			@extend .col-xs-4;
+			@extend .col-md-2;
+		}
+
+		.ticket {
+			@extend .col-xs-4;
+			@extend .col-md-1;
+		}
+
+		.buy-ticket {
+			@extend .col-xs-4;
+			@extend .col-md-2;
+			@extend .text-right;
+
+			button {
+				@extend .btn;
+				@extend .btn-lg;
+				@extend .btn-default;
+			}
+
+		}
+
+	}
+
+}
+
+/**	- - - - - - - - - - - - - - - - - - - - */
+
+
+/**	LAYOUT
+***	- - - - - - - - - - - - - - - - - - - - */
+
+.event-image {
+	background-size: cover;
+	-moz-background-size: cover;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	width: 100%;
+	height: 100%;
+
+}
+
+.unactive-event {
+	background-color: $gray-dark;
+}
+
+/**	- - - - - - - - - - - - - - - - - - - - */
