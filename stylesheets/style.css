@@ -4,7 +4,7 @@ body{font-family:'Open Sans',sans-serif;font-weight:300}
 
 .progress .progress-bar{background:#5ba0d0}
 
-content{margin:120px auto 20px auto;padding:0 20px;max-width:550px;display:block}
+content{margin:120px auto 20px auto;padding:0 20px;max-width:750px;display:block}
 
 content a,content a:hover,content a:active{color:#5ba0d0!important;outline:none!important}
 
@@ -42,4 +42,10 @@ view .play-button{margin:0;width:100%;color:#5ba0d0;cursor:pointer;text-align:ce
 
 .night,.night input{background:#171717;color:#fff}
 
-.id{float: right}
+.eventlist{border: solid 0px #171717; border-radius:10; padding: 0px; margin: 0px; list-style-type:none}
+.eventlistitem{border-bottom: solid 0px #5ba0d0; border-radius:10; padding: 0px; margin: 0px; clear: both;}
+.id{float: right; display: none}
+.dateandprice{float: left; border: solid 0px #990000;}
+.date{padding: 0px; margin: 0px; list-style-type:none}
+.price{text-align: left}
+.title{text-align: right; vertical-align: top; border-top: solid 1px #666666;}

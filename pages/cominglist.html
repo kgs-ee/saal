@@ -1,12 +1,17 @@
 <h3 ng-if="!cominglist">Laen andmeid...</h3>
 
-    <a ng-repeat="e in cominglist | orderBy:'id':true | filter:search" href="#/event/{{ e.id }}">
-        <p>
-            <span class="id">{{ e.id }}</span>
-            <h3>{{ e.title }}</h3>
-            <span ng-if="e.date" ng-repeat="d in e.date">{{ d.value | date: 'dd.MM.yyyy hh:mm' }} </span>
-            <span ng-if="e.price"><br/>Hind: {{ e.price }}</span>
-            <p>{{ e.description|truncate:250 }}</p>
-        </p>
-    </a>
-
+<ul class="eventlist">
+    <li class="eventlistitem" ng-repeat="e in cominglist | orderBy:'id':true | filter:search">
+        <a href="#/event/{{ e.id }}">
+            <div class="id">{{ e.id }}</div>
+            <div class="dateandprice">
+                <ul class="date" ng-if="e.date">
+                    <li ng-repeat="d in e.date">{{ d }}</li>
+                </ul>
+                <div class="price" ng-if="e.price">Hind: {{ e.price }}</div>
+            </div>
+            <div class="title">{{ e.title }}</div>
+            <!-- <div class="description">{{ e.description|truncate:250 }}</div> -->
+        </a>
+    </li>
+</ul>
