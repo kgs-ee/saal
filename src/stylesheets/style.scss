@@ -127,7 +127,7 @@ nav[role="main"] {
 		background-color: white;
 		border-color: none;
 		border: 0;
-		padding-top: 2em;
+		padding-top: 1em;
 		//padding-bottom: 2em;
 	}
 	
@@ -286,7 +286,11 @@ hr {
 		height: 100%;
 
 		h1 {
-			@extend .col-md-12;
+			@extend .col-md-8;
+			font-size: 5em;
+			line-height: 1em;
+			letter-spacing: -2px;
+			padding-top: .2em;
 		}
 	}
 
