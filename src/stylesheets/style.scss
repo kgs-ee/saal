@@ -199,6 +199,13 @@ h4 {
 	font-family: flyerblack, Arial, Helvetica, sans-serif;
 }
 
+hr {
+	border: 0;
+	height: 3px;
+	background-color: $gray-dark;
+	margin: 0;
+}
+
 /**	- - - - - - - - - - - - - - - - - - - - */
 
 /**	FRONT PROGRAMME
@@ -212,13 +219,6 @@ h4 {
 	h1 {
 		@extend .col-md-12;
 		@extend .text-center;
-	}
-
-	hr {
-		border: 0;
-		height: 3px;
-		background-color: $gray-dark;
-		margin: 0;
 	}
 
 	.event-item {
@@ -311,6 +311,61 @@ h4 {
 
 	}
 
+}
+
+
+// SINGLE EVENT
+section[role="main"] {
+	@extend .row;
+	background-color: #e4e4e4;
+	padding-top: 4em;
+	padding-bottom: 4em;
+
+	aside {
+		@extend .col-md-6;
+		@extend .h3;
+
+		.event-item {
+			@extend .row;
+			padding-top: .7em;
+			padding-bottom: .7em;
+
+			&:first-child {
+				padding-top: 0;
+			}
+
+			.day {
+				@extend .col-md-4;
+			}
+
+			.date {
+				@extend .col-md-4;
+				@extend .text-center;
+			}
+
+			.buy-ticket {
+				@extend .col-md-4;
+				@extend .text-right;
+
+				button {
+					@extend .btn;
+					@extend .btn-lg;
+					@extend .btn-default;
+				}
+			}
+		}
+
+		.meta-info {
+			@extend .col-md-8;
+			@extend small;
+		}
+	}
+
+	
+	article {
+		@extend .col-md-6;
+		@extend .h3;
+	}
 }
 
 /**	- - - - - - - - - - - - - - - - - - - - */
