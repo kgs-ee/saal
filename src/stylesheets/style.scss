@@ -299,6 +299,7 @@ hr {
 	.cat-performance,
 	.cat-film-video {
 		@extend .col-md-2;
+		@extend .col-xs-4;
 		@extend .text-center;
 		@extend .text-uppercase;
 		@extend .h4;
@@ -336,15 +337,18 @@ section[role="main"] {
 
 			.day {
 				@extend .col-md-4;
+				@extend .col-xs-4;
 			}
 
 			.date {
 				@extend .col-md-4;
+				@extend .col-xs-4;
 				@extend .text-center;
 			}
 
 			.buy-ticket {
 				@extend .col-md-4;
+				@extend .col-xs-4;
 				@extend .text-right;
 
 				button {
@@ -356,8 +360,10 @@ section[role="main"] {
 		}
 
 		.meta-info {
-			@extend .col-md-8;
-			@extend small;
+			@extend .col-md-10;
+			@extend .h4;
+			color: red;
+			margin-top: 5em;
 		}
 	}
 
@@ -366,6 +372,20 @@ section[role="main"] {
 		@extend .col-md-6;
 		@extend .h3;
 	}
+}
+
+.embed-sound {
+	@extend .row;
+	background-color: #343334;
+	padding-top: 4em;
+	padding-bottom: 4em;
+}
+
+.embed-video {
+	@extend .row;
+	background-color: #252526;
+	padding-top: 4em;
+	padding-bottom: 4em;
 }
 
 /**	- - - - - - - - - - - - - - - - - - - - */
