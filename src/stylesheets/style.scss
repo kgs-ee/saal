@@ -128,7 +128,7 @@ nav[role="main"] {
 		border-color: none;
 		border: 0;
 		padding-top: 2em;
-		padding-bottom: 2em;
+		//padding-bottom: 2em;
 	}
 	
 }
@@ -139,8 +139,14 @@ nav[role="main"] {
 /**	DATEPICKER
 ***	- - - - - - - - - - - - - - - - - - - - */
 
-.ui-datepicker-header {
-	//@extend .row;
+.ui-datepicker-calendar {
+	@extend .table;
+	//@extend .table-bordered;
+	@extend .text-center;
+
+	thead th {
+		@extend .text-center;
+	}
 }
 
 .ui-datepicker-prev {
@@ -154,19 +160,17 @@ nav[role="main"] {
 	@extend .text-right;
 }
 
-
 .ui-datepicker-title {
-	@extend .h2;
+	@extend h3;
 	@extend .text-center;
+	@extend .text-uppercase;
 	margin-top: - ceil(($font-size-base * 1.4));
 	//@extend .col-md-4;
 	//@extend .col-md-pull-5;
 }
 
-.ui-datepicker-calendar {
-	@extend .table;
-	//@extend .table-bordered;
-	@extend .text-center;
+.ui-datepicker-header {
+	//@extend .row;
 }
 
 .badge {
@@ -218,12 +222,12 @@ hr {
 
 	h1 {
 		@extend .col-md-12;
-		@extend .text-center;
+		@extend .text-uppercase;
+		//@extend .text-center;
 	}
 
 	.event-item {
 		@extend .col-md-12;
-		//border-bottom: 3px solid $gray-dark;
 		padding-top: 1.3em;
 		padding-bottom: 1.3em;
 
@@ -254,7 +258,7 @@ hr {
 
 			button {
 				@extend .btn;
-				@extend .btn-lg;
+				//@extend .btn-lg;
 				@extend .btn-default;
 			}
 
@@ -353,7 +357,7 @@ section[role="main"] {
 
 				button {
 					@extend .btn;
-					@extend .btn-lg;
+					//@extend .btn-lg;
 					@extend .btn-default;
 				}
 			}
