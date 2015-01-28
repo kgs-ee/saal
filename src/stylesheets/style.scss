@@ -13,6 +13,10 @@ Back-end: Mihkel Putrints
 
 /**	- - - - - - - - - - - - - - - - - - - - */
 
+// body {
+// 	background-color: #f7cb28;
+// }
+
 
 /**	FONTS
 ***	- - - - - - - - - - - - - - - - - - - - */
@@ -99,6 +103,8 @@ nav[role="main"] {
 	@extend .navbar;
 	@extend .navbar-default; 
 	@extend .navbar-static-top;
+	margin-bottom: 0;
+	padding-bottom: 1em;
 }
 
 #navbar {
@@ -287,7 +293,7 @@ hr {
 			@extend .col-md-2;
 			@extend .text-right;
 
-			button {
+			a {
 				@extend .btn;
 				//@extend .btn-lg;
 				@extend .btn-default;
@@ -390,7 +396,7 @@ section[role="main"] {
 				@extend .col-xs-4;
 				@extend .text-right;
 
-				button {
+				a {
 					@extend .btn;
 					//@extend .btn-lg;
 					@extend .btn-default;
