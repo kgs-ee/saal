@@ -156,19 +156,33 @@ nav[role="main"] {
 ***	- - - - - - - - - - - - - - - - - - - - */
 
 .select-cat {
+	@extend .text-center;
+	@extend .text-uppercase;
 
 	.active {
+		@include box-shadow(0px 0px 0px transparent);
+		color: red;
 		
 		.icon-checkmark2:before {
 			content: "\ea10";
 		}
 	}
+
+	label {
+		@extend .h3;
+		margin-left: 1em;
+		margin-right: 1em;
+
+		&:hover {
+			color: red;
+		}
+
+		&:active {
+			@include box-shadow(0px 0px 0px transparent);
+		}
+
+	}
 }
-
-// .select-cat input[type="checkbox"].icon-checkmark2:checked:before {
-// 	content: "\ea10";
-// }
-
 
 /**	- - - - - - - - - - - - - - - - - - - - */
 
@@ -236,7 +250,8 @@ td[title="Available"] {
 
 h1,
 h3,
-h4 {
+h4,
+.select-cat {
 	font-family: flyerblack, Arial, Helvetica, sans-serif;
 }
 
