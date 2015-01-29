@@ -170,8 +170,9 @@ nav[role="main"] {
 
 	label {
 		@extend .h3;
-		margin-left: 1em;
-		margin-right: 1em;
+		@extend .col-md-2;
+		@extend .col-xs-4;
+		padding: 0;
 
 		&:hover {
 			color: red;
@@ -189,6 +190,23 @@ nav[role="main"] {
 
 /**	DATEPICKER
 ***	- - - - - - - - - - - - - - - - - - - - */
+
+#datepicker-container {
+	background-color: white;
+	padding: 2em;
+	cursor: move;
+	position: absolute;
+	top: 10em;
+	right: 3em;
+	width: 400px;
+	height: 260px;
+	z-index: 9000;
+	@include box-shadow(5px 2px 10px rgba(255, 0, 0, 0.8));
+
+	#datepicker {
+		z-index: 10000;
+	}
+}
 
 .ui-datepicker-calendar {
 	@extend .table;
@@ -215,7 +233,7 @@ nav[role="main"] {
 	@extend h3;
 	@extend .text-center;
 	@extend .text-uppercase;
-	margin-top: - ceil(($font-size-base * 1.4));
+	margin-top: -1.5em;
 	//@extend .col-md-4;
 	//@extend .col-md-pull-5;
 }
@@ -235,6 +253,24 @@ td[title="Available"] {
 		@extend .badge;
 	}
 
+}
+
+.ui-datepicker-prev,
+.ui-datepicker-next {
+	cursor: pointer;
+}
+
+.ui-datepicker-prev span,
+.ui-datepicker-next span {
+	display: none;
+}
+
+.ui-datepicker-prev:after {
+	content: url(../images/arrow-left.svg);
+}
+
+.ui-datepicker-next:after {
+	content: url(../images/arrow-right.svg);
 }
 /**	- - - - - - - - - - - - - - - - - - - - */
 
@@ -275,13 +311,21 @@ hr {
 	h1 {
 		@extend .col-md-12;
 		@extend .text-uppercase;
-		//@extend .text-center;
+		margin-top: 1.5em;
+
+		&:first-child {
+			margin-top: 0;
+		}
 	}
 
 	.event-item {
 		@extend .col-md-12;
 		padding-top: 1.3em;
 		padding-bottom: 1.3em;
+
+		&:first-child {
+			padding-top: 0;
+		}
 
 		.date {
 			@extend .col-xs-2;
@@ -458,6 +502,7 @@ footer[role="contentinfo"] {
 	@extend .row;
 	background-color: $gray-light;
 	color: white;
+	margin-top: 5em;
 	padding-top: 2em;
 	padding-bottom: 2em;
 
