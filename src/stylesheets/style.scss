@@ -156,7 +156,7 @@ nav[role="main"] {
 ***	- - - - - - - - - - - - - - - - - - - - */
 
 .select-cat {
-	@extend .text-center;
+	//@extend .text-left;
 	@extend .text-uppercase;
 
 	.active {
@@ -172,7 +172,15 @@ nav[role="main"] {
 		@extend .h3;
 		//@extend .col-md-2;
 		//@extend .col-xs-4;
-		padding: 0;
+		padding: 0 .5em 0 .5em;
+
+		&:first-child {
+			padding-left: 0;
+		}
+
+		&:last-child {
+			padding-right: 0;
+		}
 
 		&:hover {
 			color: red;
