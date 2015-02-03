@@ -170,8 +170,8 @@ nav[role="main"] {
 
 	label {
 		@extend .h3;
-		@extend .col-md-2;
-		@extend .col-xs-4;
+		//@extend .col-md-2;
+		//@extend .col-xs-4;
 		padding: 0;
 
 		&:hover {

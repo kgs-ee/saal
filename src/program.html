@@ -20,6 +20,7 @@
     <script src="javascripts/bootstrap/carousel.js"></script>
     <script src="javascripts/bootstrap/transition.js"></script>
     <script src="javascripts/bootstrap/button.js"></script>
+    <script src="javascripts/bootstrap/dropdown.js"></script>
     <script src="javascripts/scripts.js"></script>
     <!-- /build -->
 </head>
@@ -70,7 +71,19 @@
     </nav>
 
     <div class="container-fluid">
-
+        <!-- Single button -->
+        <div class="btn-group">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+            Action <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </div>
         <!-- .event-categories -->
         <div class="select-cat" data-toggle="buttons">
             <label class="btn active">
