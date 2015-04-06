@@ -1,0 +1,512 @@
+/*! 
+- - - - - - - - - - - - - - - - - - - - - - - 
+KANUTI GILDI SAAL
+
+Front-end: Ranno Ait
+Back-end: Mihkel Putrints
+- - - - - - - - - - - - - - - - - - - - - - -
+*/
+
+/**	- - - - - - - - - - - - - - - - - - - - */
+
+@import "bootstrap";
+
+/**	- - - - - - - - - - - - - - - - - - - - */
+
+$primary-color: #0429BC;
+
+
+/**	MAIN
+***	- - - - - - - - - - - - - - - - - - - - */
+
+body {
+	color: #000;
+	padding-top: 63px;
+	-webkit-font-smoothing: subpixel-antialiased;
+
+	@media (min-width: $screen-desktop) {
+		padding-top: 106px;
+	}
+}
+
+.page-margin {
+	margin: 3em 0;
+
+	@media (min-width: $screen-desktop) {
+		margin: 3em;
+	}
+}
+
+/**	- - - - - - - - - - - - - - - - - - - - */
+
+
+/**	FONTS
+***	- - - - - - - - - - - - - - - - - - - - */
+
+@font-face {
+    font-family: 'flyerblack';
+    src: url('../fonts/flyer/flyer-black-webfont.eot');
+    src: url('../fonts/flyer/flyer-black-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/flyer/flyer-black-webfont.woff2') format('woff2'),
+         url('../fonts/flyer/flyer-black-webfont.woff') format('woff'),
+         url('../fonts/flyer/flyer-black-webfont.ttf') format('truetype'),
+         url('../fonts/flyer/flyer-black-webfont.svg#flyerblack') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+	font-family: 'icomoon';
+	src:url('../fonts/icomoon/fonts/icomoon.eot?-bsudmf');
+	src:url('../fonts/icomoon/fonts/icomoon.eot?#iefix-bsudmf') format('embedded-opentype'),
+		url('../fonts/icomoon/fonts/icomoon.woff?-bsudmf') format('woff'),
+		url('../fonts/icomoon/fonts/icomoon.ttf?-bsudmf') format('truetype'),
+		url('../fonts/icomoon/fonts/icomoon.svg?-bsudmf#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-checkmark:before {
+	content: "\ea10";
+}
+
+.icon-checkmark2:before {
+	content: "\ea11";
+}
+
+.icon-mail4:before {
+	content: "\ea86";
+}
+
+.icon-facebook3:before {
+	content: "\ea8e";
+}
+
+.icon-instagram:before {
+	content: "\ea90";
+}
+
+.icon-twitter3:before {
+	content: "\ea93";
+}
+
+.icon-youtube:before {
+	content: "\ea97";
+}
+
+.icon-vimeo3:before {
+	content: "\ea9e";
+}
+
+/**	- - - - - - - - - - - - - - - - - - - - */
+
+/**	ARROWS
+***	- - - - - - - - - - - - - - - - - - - - */
+
+.arrow-left {
+	content: url(../images/arrow-left.svg);
+}
+.arrow-right {
+	content: url(../images/arrow-right.svg);
+}
+
+/**	- - - - - - - - - - - - - - - - - - - - */
+
+
+/**	TYPOGRAPHY
+***	- - - - - - - - - - - - - - - - - - - - */
+
+p,
+h1,.h1,
+h2,.h2,
+h3,.h3 {
+	font-weight: normal;
+	margin: 0;
+}
+
+h2,
+.season,
+.select-cat {
+	font-family: flyerblack, sans-serif;
+	text-transform: uppercase;
+}
+
+h2 {
+	margin-bottom: .5em;
+}
+
+h3, .h3 {
+	line-height: 1.2em;
+}
+
+.season {
+	font-size: .75em;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	background-color: #000;
+	margin: 1.4em 0;
+}
+
+/**	- - - - - - - - - - - - - - - - - - - - */
+
+
+/**	LINKS
+***	- - - - - - - - - - - - - - - - - - - - */
+
+a {
+	color: #000;
+
+	&:hover {
+		color: $primary-color;
+		text-decoration: none;
+	}
+}
+
+.active a {
+	border-bottom: 1px solid;
+}
+
+a.logo {
+	&:hover {
+		color: #000;
+	}
+}
+
+/**	- - - - - - - - - - - - - - - - - - - - */
+
+
+/**	NAVBAR
+***	- - - - - - - - - - - - - - - - - - - - */
+
+.navbar-default {
+	background-color: white;
+	box-shadow: 0px 3px 15px 0px rgba(0,0,0,0.35);
+	-moz-box-shadow: 0px 3px 15px 0px rgba(0,0,0,0.35);
+	-webkit-box-shadow: 0px 3px 15px 0px rgba(0,0,0,0.35);
+	padding: 1em 0;
+
+	.social {
+		@extend h4;
+		margin: 0;
+
+		a {
+			color: $primary-color;
+		}
+	}
+}
+
+#navbar {
+	margin-top: 1em;
+	padding-top: 1em;
+	
+	@media (min-width: $screen-desktop) {
+		padding-top: 0;
+		margin-top: 0;
+	}
+
+	ul {
+
+		li {
+			margin-bottom: 1em;
+
+			@media (min-width: $screen-desktop) {
+				margin-bottom: 0;
+			}
+		}
+	}
+}
+
+/**	- - - - - - - - - - - - - - - - - - - - */
+
+/**	DATEPICKER
+***	- - - - - - - - - - - - - - - - - - - - */
+
+
+.ui-datepicker-calendar {
+	@extend .table;
+	//@extend .table-bordered;
+	@extend .text-center;
+
+	thead th {
+		@extend .text-center;
+	}
+}
+
+/**	- - - - - - - - - - - - - - - - - - - - */
+
+
+/**	CAROUSEL
+***	- - - - - - - - - - - - - - - - - - - - */
+
+#front-carousel {
+	color: white;
+
+	figure {
+		background-size: cover;
+		-moz-background-size: cover;
+		background-position: 50% 50%;
+		background-repeat: no-repeat;
+		width: 100%;
+		height: 100%;
+
+		header {
+			color: white;
+			padding-top: 1em;
+
+			p,
+			h1 {
+				font-family: flyerblack, sans-serif;
+			}
+
+			h2 {
+				text-transform: none;
+			}
+
+			@media (min-width: $screen-desktop) {
+				p {
+					font-size: 2em;
+				}
+
+				h1,
+				h2 {
+					font-size: 5em;
+					line-height: .8em;
+					letter-spacing: -2px;
+					padding-top: .2em;
+				}
+			}
+		}
+
+		.event-cats {
+			color: white;
+			position: absolute;
+			width: 100%;
+			bottom: 1.3em;
+
+			@media (max-width: $screen-phone) {
+
+				.h3 {
+					font-size: .8em;
+				}
+			}
+
+			.unactive span {
+				background-color: white;
+			}
+		}
+
+	}
+}
+
+/**	- - - - - - - - - - - - - - - - - - - - */
+
+/**	PROGRAMME CHECKBOXES
+***	- - - - - - - - - - - - - - - - - - - - */
+
+.select-drop {
+	margin-bottom: 2em;
+}
+
+.select-cat {
+	margin-bottom: 2em;
+	
+	@media (min-width: $screen-desktop) {
+		margin-bottom: 0;
+	}
+
+	.active {
+		color: $primary-color;
+		@include box-shadow(0px 0px 0px transparent);
+		
+		.icon-checkmark2:before {
+			content: "\ea10";
+		}
+	}
+
+	label {
+		@extend h3;
+		padding: 0 .5em 0 0;
+
+		@media (min-width: $screen-desktop) {
+
+			padding: 0 .5em 0 .5em;
+
+			&:first-child {
+				padding-left: 0;
+			}
+
+			&:last-child {
+				padding-right: 0;
+			}
+
+			&:hover {
+				color: $primary-color;
+			}
+
+			&:active {
+				@include box-shadow(0px 0px 0px transparent);
+			}
+		}
+	}
+}
+
+/**	- - - - - - - - - - - - - - - - - - - - */
+
+
+/** BUTTONS
+***	- - - - - - - - - - - - - - - - - - - - */
+
+.btn-primary {
+  color: #fff;
+  background-color: $primary-color;
+  border-color: $primary-color;
+
+  &:hover {
+  	color: $primary-color;
+  	background-color: transparent;
+  }
+
+  &:focus {
+  	color: #fff;
+  	background-color: $primary-color;
+  	border-color: $primary-color;
+  }
+
+  &.disabled {
+  	background-color: gray;
+  	border-color: gray;
+  }
+}
+
+.open>.btn-default.dropdown-toggle {
+	background-color: $primary-color;
+	border-color: $primary-color;
+	color: #fff;
+}
+
+.btn-default {
+	color: $primary-color;
+	background-color: transparent;
+	border-color: $primary-color;
+
+	&:hover {
+		background-color: $primary-color;
+		border-color: $primary-color;
+		color: #fff;
+	}
+}
+
+/**	- - - - - - - - - - - - - - - - - - - - */
+
+
+/**	LAYOUT
+***	- - - - - - - - - - - - - - - - - - - - */
+
+.logo img {
+	max-width: 12%;
+
+	@media (min-width: $screen-desktop) {
+		max-width: 100%;
+	}
+}
+
+
+.tour,
+.programme {
+	margin-bottom: 5em;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+	h3 {
+		margin: 1em 0;
+
+		@media (min-width: $screen-desktop) {
+			margin: 0;
+		}
+	}
+}
+
+.main-text {
+	margin-top: 2em;
+
+	@media (min-width: $screen-desktop) {
+		margin-top: 0;
+	}
+}
+
+.banner {
+	margin-top: 5em;
+	@media (min-width: $screen-desktop) {
+		margin-top: 0;
+	}
+}
+
+
+.banner,
+.video-sound {
+	div {
+		margin-bottom: 2em;
+	}
+}
+
+.video-sound {
+	margin-top: 5em;
+	@media (min-width: $screen-desktop) {
+		margin-top: 0;
+	}
+}
+
+.load-more,
+.morelink {
+	margin-top: 1em;
+}
+
+.panel {
+	border: 0;
+}
+
+.press,
+.past,
+.upcoming,
+.gallery {
+	margin-top: 4em;
+
+	h3 {
+		margin: 1em 0;
+
+		@media (min-width: $screen-desktop) {
+			margin: 0;
+		}
+	}
+}
+
+.single-image {
+	margin-bottom: 1em;
+}
+
+footer {
+	padding: 2em 0;
+	background-color: gray;
+}
+
+/**	- - - - - - - - - - - - - - - - - - - - */
