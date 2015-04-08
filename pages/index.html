@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app="saalApp">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+        <meta name="Description" content="Kanuti Gildi Saal" />
+        <meta name="Author" content="Kanuti Gildi Saal">
+
+        <meta property="og:url" content="https://saal.entu.ee/"/>
+        <meta property="og:title" content="Kanuti Gildi Saal"/>
+        <meta property="og:description" content="Kanuti Gildi Saal"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:image" content="http://ylikool.herokuapp.com/images/switch1.png"/>
+
+        <meta property="fb:app_id" content="" />
+        <meta property="fb:admins" content=""/>
+
+        <title>Saal.ee</title>
+
+        <link href='//fonts.googleapis.com/css?family=Open+Sans:300,600|Open+Sans+Condensed:300' rel='stylesheet'>
+
+        <link rel="stylesheet" href="frameworks/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="frameworks/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="stylesheets/style.css">
+
+        <script type="text/javascript" src="javascripts/angular.min.js"></script>
+        <script type="text/javascript" src="javascripts/angular-route.min.js"></script>
+        <script type="text/javascript" src="javascripts/script.js"></script>
+    </head>
+    <body ng-controller="mainCtrl" ng-class="{ 'night' : nightMode }">
+
+        <div class="progress" ng-if="newslist_loaded+eventlist_loaded != newslist_count+eventlist_count">
+            <div class="progress-bar" role="progressbar" ng-style="{width: ((newslist_loaded+eventlist_loaded) * 100 / (newslist_count+eventlist_count))+'%'}"></div>
+
+        <content ng-style="{'margin-top': !current_event && '40px'}">
+            <header>
+                <img id="night-tip" class="hidden-xs" ng-src="images/tip{{ nightTipNr }}.png" ng-show="!hideNightTip" />
+
+                <h1><i id="night-switch" class="fa" ng-click="nightToggle()" ng-class="{'fa-sun-o' : nightMode, 'fa-moon-o': !nightMode}"></i> <a id="logo" href="#">saal.ee</a></h1>
+
+ 
+                <p>{{ current_date }} XX {{ current_time }}</p>
+                <form>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                        <input type="text" class="form-control" placeholder="Otsi..." ng-model="search">
+                </form>
+ 
+                <ul class="nav nav-tabs nav-justified">
+                    <li ng-class="{ 'active' : p.url == url }" ng-repeat="p in pages"><a href="#{{ p.url }}">{{ p.title }}</a></li>
+                </ul>
+ 
+            </header>
+            <view ng-view></view>
+        </content>
+ 
+    </body>
+</html>
